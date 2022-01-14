@@ -1,3 +1,9 @@
 # Replicate interesting visualizations and learn
 ---
-![](https://raw.githubusercontent.com/laem/openmoji-environment/a98b89388b12672b711e4a9b491b3f6d341112be/greenhouse-effect.svg) Climate change communication
+Yale Program on Climate Change Communication @YaleClimateComm conduct research on public climate change knowledge, attitudes, policy support& behavior
+- The visualization to replicate was the one below
+![Original](https://raw.githubusercontent.com/rahulvenugopal/ReplicateViz/main/Climate%20change%20communication/images/Global%20warming.png)
+- Replicated version
+![](https://raw.githubusercontent.com/rahulvenugopal/ReplicateViz/main/Climate%20change%20communication/images/Global%20warming%20replication.png)
+
+- Read more from the [source](https://climatecommunication.yale.edu/publications/climate-change-in-the-american-mind-september-2021/)
