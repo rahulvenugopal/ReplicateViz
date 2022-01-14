@@ -53,7 +53,7 @@ ggplot(df, aes(x = row.names(df), y = 10)) +
   
   # title of the plot and custom setups
   labs(title = "Global Warming's Six Americas",
-       caption = 'Visualisation: Rahul Venugopal') + 
+       caption = 'Replication: Rahul Venugopal') + 
   
   theme(plot.title = element_text(size = rel(1.25),
                                   hjust = 0.5),
