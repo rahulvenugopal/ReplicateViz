@@ -4,7 +4,12 @@
 # https://climatecommunication.yale.edu/wp-content/uploads/2020/10/SixAm_2020_bubbles-1.png
 # author@ Rahul Venugopal on 14th January 2022
 
-# Let it begin -----------------------------------------------------------------
+# Took me some time to figure out the scale_size_area vs scale_size_radius
+# check the twitter panic I created - https://twitter.com/rhlvenugopal/status/1482045029107773440
+# Have to put the size parameter within aes of ggplot
+# I was doing this wrongly by adding within geom_point()
+# Thanks a ton to the R community
+
 # Loading libraries
 library(reshape2)
 library(ggplot2)
@@ -28,14 +33,15 @@ color <- c("#066778", "#369c91","#cc9e6c","#818489","#a66c6a","#736076")
 # load logos
 logo <- grid::rasterGrob(png::readPNG("logo.png"))
 
-ggplot(df, aes(x = row.names(df), y = 10)) + 
+ggplot(df, aes(x = row.names(df), y = 10,
+               size = cell)) + 
+  scale_size_area() + 
   
   # control y-axis limits
   scale_y_continuous(limits = c(9.6, 10.15)) + 
   
   # the bubbles
-  geom_point(size = cell/1.5, # for controlling bubble sizes (w/o proportion sacrifice)
-             color = color) + 
+  geom_point(color = color, show.legend = FALSE) + 
   
   # text above bubbles
   geom_text(aes(label = order_label),
