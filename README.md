@@ -20,7 +20,9 @@
 - I saw this [post](https://twitter.com/dollarsanddata/status/1564743654450806792) and wanted to replicate and extend this
 - [Tanya Shapiro](https://twitter.com/tanya_shapiro) has contributed lots of `TidyTuesday` visualizations
 - For this endeavor, I referred the [Scooby doo](https://github.com/tashapiro/TidyTuesday/blob/1e046eda48ec5111fb163c393758a9b2497794ce/2021/W29/scooby-doo.R) and [Docto who](https://github.com/tashapiro/TidyTuesday/tree/master/2021/W48) submissions from her
+
 ![](https://raw.githubusercontent.com/rahulvenugopal/ReplicateViz/main/Of%20Dicaprio%20and%20data/images/scooby-doo.jpeg) ![](https://raw.githubusercontent.com/rahulvenugopal/ReplicateViz/main/Of%20Dicaprio%20and%20data/images/doctor_who_chart.png)
 - Used [Image color picker](https://imagecolorpicker.com/) to grab the color palette of original viz
-- Reddit posts about the source viz : [this](https://www.reddit.com/r/dataisbeautiful/comments/elc8yg/leonardo_dicaprio_refuses_to_date_a_woman_his_age/) and this](https://www.reddit.com/r/dataisbeautiful/comments/azjti7/leonardo_dicaprio_refuses_to_date_a_woman_over_25/)
+- Reddit posts about the source viz : [this](https://www.reddit.com/r/dataisbeautiful/comments/elc8yg/leonardo_dicaprio_refuses_to_date_a_woman_his_age/) and [this](https://www.reddit.com/r/dataisbeautiful/comments/azjti7/leonardo_dicaprio_refuses_to_date_a_woman_over_25/)
 - [Github emjo cheatsheet](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md)
+
