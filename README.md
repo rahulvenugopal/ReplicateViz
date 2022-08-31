@@ -25,4 +25,6 @@
 - Used [Image color picker](https://imagecolorpicker.com/) to grab the color palette of original viz
 - Reddit posts about the source viz : [this](https://www.reddit.com/r/dataisbeautiful/comments/elc8yg/leonardo_dicaprio_refuses_to_date_a_woman_his_age/) and [this](https://www.reddit.com/r/dataisbeautiful/comments/azjti7/leonardo_dicaprio_refuses_to_date_a_woman_over_25/)
 - [Github emjo cheatsheet](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md)
-
+- [How to insert special symbols to text](https://www.rdocumentation.org/packages/ggtext/versions/0.1.1/topics/element_textbox)
+- [To combine geom_line and geom_point when x variable is categorical](https://stackoverflow.com/questions/35209157/ggplot-line-plot-for-discrete-x-axis)
+- [Vertical gradient](https://stackoverflow.com/questions/70602516/gradient-colour-fill-a-barplot-in-ggplot2)
