@@ -1,9 +1,10 @@
 # Replicate interesting visualizations and learn
 
 # Yale Program on Climate Change Communication @YaleClimateComm conduct research on public climate change knowledge, attitudes, policy support& behavior
-- The visualization to replicate was the one below
+
+### The visualization to replicate was the one below
 ![Original](https://raw.githubusercontent.com/rahulvenugopal/ReplicateViz/main/Climate%20change%20communication/images/Global%20warming.png)
-- Replicated version
+### Replicated version
 ![](https://raw.githubusercontent.com/rahulvenugopal/ReplicateViz/main/Climate%20change%20communication/images/Global%20warming%20replication.png)
 
 - Read more from the [source](https://climatecommunication.yale.edu/publications/climate-change-in-the-american-mind-september-2021/)
@@ -16,8 +17,10 @@
 ---
 
 # Of Dicaprio and data
+
 - I saw this [post](https://twitter.com/dollarsanddata/status/1564743654450806792) and wanted to replicate and extend this
 - [Tanya Shapiro](https://twitter.com/tanya_shapiro) has contributed lots of `TidyTuesday` visualizations which helped me lots
 - For this endeavor, I referred the [Scooby doo](https://github.com/tashapiro/TidyTuesday/blob/1e046eda48ec5111fb163c393758a9b2497794ce/2021/W29/scooby-doo.R) and [Docto who](https://github.com/tashapiro/TidyTuesday/tree/master/2021/W48) submissions from her
-![]() ![]()
+![](https://raw.githubusercontent.com/rahulvenugopal/ReplicateViz/main/Of%20Dicaprio%20and%20data/images/scooby-doo.jpeg) ![](https://raw.githubusercontent.com/rahulvenugopal/ReplicateViz/main/Of%20Dicaprio%20and%20data/images/doctor_who_chart.png)
+- Used [Image color picker](https://imagecolorpicker.com/) to grab the color palette of original viz
 
