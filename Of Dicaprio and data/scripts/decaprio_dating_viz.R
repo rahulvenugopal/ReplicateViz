@@ -9,19 +9,20 @@ library(tidyverse)
 library(ggCyberPunk)
 library(ggtext)
 library(gghighlight)
+library(emojifont)
+library(ggforce)
 
 # Create dataframe --------------------------------------------------------
 
-df_raw <- data.frame(Years=seq(from = 1998, to = 2022),
-                Leo_age=seq(from = 24, to = 48),
-                GF_age=c(18,19,20,21,22,23,20,21,22,23,24,25,
-                       23,22,20,21,25,24,25,20,21,22,23,24,25))
+df <- data.frame(Years = 1998:2022,
+                Leo_age = 24:48,
+                GF_age = c(18:23,20:25,23,22,20,21,25,24,25,
+                           20:25))
 
-df <- df_raw
-df$Years <- as.factor(df$Years)
 
+# Vertical gradient data preparation --------------------------------------
 # Adding the girlfriends age barplots
-gf_data <- df_raw %>% select(-Leo_age)
+gf_data <- df %>% select(-Leo_age)
 
 vals <- lapply(gf_data$GF_age, function(y) seq(0, y, by = 0.01))
 # the 0.01 controls the smoothness of the bar
@@ -65,42 +66,54 @@ theme_update(
 
 # Let the Viz begin -------------------------------------------------------
 
-viz_leo <- ggplot(df, aes(x = Years, y = Leo_age)) + 
+viz_leo <- ggplot(df, aes(x = Years)) + 
   
   # line and dots
-  geom_line(aes(group = 1), color = "#ff7400") + 
+  geom_line(aes(y = Leo_age), color = "#ff7400") + 
   
-  geom_point(size = 4,
+  geom_point(aes(y = Leo_age),
+             size = 4,
              pch = 21,
              fill = "#0a001e",
              color = "#ff7400") +
   
   # adding age above the dot for Leo
-  geom_text(data = df,
-            aes(label = Leo_age),
+  geom_text(aes(y = Leo_age,
+                label = Leo_age),
             color = "#ff7400",
             vjust=-1) +
   
-  # Girl friends age barplot
-  geom_bar(stat = "identity",
-           width = 0.25,
-           fill = "#01f7f8",
-           alpha = 0.75,
-           aes(x = Years, y = GF_age)) +
+  # Girlfriends age bar plot as a vertical gradient
+  geom_segment(data = just_gf_ages,
+               aes(x = x, xend = xend, y = y, yend = yend, color = y),
+               size = 1) +
+  scale_color_gradient2(low = "#083048", 
+                        mid = "#0898a2", 
+                        high = "#02ecee", 
+                        midpoint = 12.5) + 
   
-  # adding age above the dot for Girlfriends
-  geom_text(data = df,
-            aes(label = GF_age,
-                y = GF_age),
+  # adding age above the bar for Girlfriends
+  geom_text(aes(label = GF_age, y = GF_age),
             color = "#01f7f8",
             vjust=-0.5) +
   
+  # circle the max ages
+  geom_point(data = data.frame(x = c(2009,2014,2016,2022),
+                               y = c(26,26,26,26)),
+             aes(x, y),
+             size = 8,
+             color = "#bcbcbc",
+             stroke = 1.5,
+             pch = 1) +
+  
   scale_y_continuous(breaks = seq(0, 50, by = 2)) + # control axis breaks
   
-  expand_limits(y = 0) +# forcing the axis to start from zero
+  scale_x_continuous(breaks = seq(1998, 2022, by = 1)) + # control axis breaks
+  
+  expand_limits(y = 0) + # forcing the axis to start from zero
   
   # Adding annotations to Leo line part of the Viz
-  annotate(geom = "text", x = 1, y = 47,
+  annotate(geom = "text", x = 1998, y = 47,
            label = "Median age of girlfriends = 22",
            hjust = "left",
            size = 4,
@@ -108,21 +121,28 @@ viz_leo <- ggplot(df, aes(x = Years, y = Leo_age)) +
            color = "#01f7f8") + 
   
   # Trivia add
-  annotate(geom = "text", x = 8, y = 47,
+  annotate(geom = "text", x = 2005.2, y = 47,
            label = "Titanic movie got released 25 years ago",
            hjust = "left",
            size = 4,
            family= "Aldrich", # annotate by default don't inherit font
            color = "#bcbcbc") + 
   
-  annotate(geom = "text", x = 1, y = 45,
+  geom_emoji('ship',
+             family='EmojiOne',
+             x = 2004.5,
+             y = 47,
+             color='#ff7400',
+             size = 18) +
+  
+  annotate(geom = "text", x = 1998, y = 45,
            label = "Well, Leonardo ages linearly!",
            hjust = "left",
            size = 4,
            family= "Aldrich", # annotate by default don't inherit font
            color = "#ff7400") + 
   
-  geom_richtext(aes(x = 2, y = 39),
+  geom_richtext(aes(x = 1999, y = 39),
                 fill = NA, label.color = NA,
                 nudge_x = 0,
                 nudge_y = 0,
@@ -132,7 +152,7 @@ viz_leo <- ggplot(df, aes(x = Years, y = Leo_age)) +
                 family= "Aldrich", # annotate by default don't inherit font
                 color = "#bcbcbc") + 
   
-  geom_richtext(aes(x = 2, y = 37),
+  geom_richtext(aes(x = 1999, y = 37),
                 fill = NA, label.color = NA,
                 nudge_x = 0,
                 nudge_y = 0,
@@ -143,8 +163,8 @@ viz_leo <- ggplot(df, aes(x = Years, y = Leo_age)) +
                 color = "#bcbcbc") + 
   
   annotate(geom = "curve",
-           x = 2, y = 27,
-           xend = 2, yend = 36.2,
+           x = 1999, y = 27,
+           xend = 1999, yend = 36.2,
            curvature = -.3,
            color = "#bcbcbc",
            alpha = 0.8,
