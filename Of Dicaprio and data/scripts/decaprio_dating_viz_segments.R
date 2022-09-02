@@ -11,14 +11,52 @@ library(ggtext)
 library(gghighlight)
 library(emojifont)
 library(ggforce)
+library(ggimage)
+library(extrafont)
 
 # Create dataframe --------------------------------------------------------
 
 df <- data.frame(Years = 1998:2022,
-                Leo_age = 24:48,
-                GF_age = c(18:23,20:25,23,22,20,21,25,24,25,
-                           20:25))
+                 Leo_age = 24:48,
+                 GF_names = c(rep("Gisele Bundchen",6),
+                   rep("Bar Refaeli",6),
+                   "Blake Lively",
+                   "Erin Heatherton",
+                   rep("Toni Garrn",2),
+                   "Kelly Rohrbach",
+                   rep("Nina Agdal",2),
+                   rep("Camila Morrone",6)),
+                 GF_age = c(18:23,20:25,23,22,20,21,25,24,25,20:25))
 
+# for annotations about maximum age limit
+max_points <- data.frame(x=c(2010, 2015, 2017,2022), y=rep(25,4))
+
+#data for year segments by girlfriend
+by_gf <- df %>% 
+  group_by(GF_names) %>% 
+  summarise(min_year = min(Years),
+            max_year = max(Years))
+
+#data for images and respective positions on x axis
+images<-data.frame(name=c("Leonardo DiCaprio", unique(df$GF_names)),
+                   pos = seq(from=1999, to=2019, length.out = 9),
+                   pal_label<-c("#ff7400", rep('#01f7f8',8))) %>% 
+  mutate(path = paste0(str_replace_all(tolower(name)," ","_"),".png"))
+
+
+#data frame for connector segments from images to years
+connectors<-data.frame(
+  x= c(2001.5,2004,2005.5,2006.5, 2006.5,2011,2009,2009,2012,2011.5,2013.5,2014,2015,2016.5,2019,2018.5),
+  xend = c(2001.5, 2005.5,2005.5,2006.5,2011,2011,2009,2012,2012,2013.5,2013.5,2015,2015,2016.5,2018.5,2018.5),
+  y= c(-10,-10,-10,-10,-6,-6,-10,-8,-8,-10,-10,-10,-10,-10,-10,-10),
+  yend= c(-4,-10,-4,-6,-6,-4,-8,-8,-4,-10,-4,-10,-4,-4,-10,-4)
+)
+
+#data for images and respective positions on x axis
+images<- data.frame(name=c("Leonardo DiCaprio", unique(df$GF_names)),
+                   pos = seq(from=1999, to=2022, length.out = 9),
+                   pal_label<-c("#ff7400", rep('#01f7f8',8))) %>% 
+  mutate(path = paste0(str_replace_all(tolower(name)," ","_"),".png"))
 
 # Vertical gradient data preparation --------------------------------------
 # Adding the girlfriends age barplots
@@ -106,7 +144,7 @@ viz_leo <- ggplot(df, aes(x = Years)) +
              stroke = 1.5,
              pch = 1) +
   
-  scale_y_continuous(breaks = seq(0, 50, by = 2)) + # control axis breaks
+  scale_y_continuous(limits=c(-20,50), breaks = seq(0, 50, by = 2)) + # control axis breaks
   
   scale_x_continuous(breaks = seq(1998, 2022, by = 1)) + # control axis breaks
   
@@ -176,7 +214,30 @@ viz_leo <- ggplot(df, aes(x = Years)) +
        
        subtitle = 'HE GETS <i/b style="color:#ff7400;">OLDER</i>, THEY STAY THE <i style="color:#01f7f8;">SAME AGE</i>
        LEO IS <i/b style="color:#ff7400;">45<sup>+</sup></i> NOW BUT STILL CONSISTENTLY DATES
-       WOMEN <i/b style="color:#01f7f8;"> less than 26 </i>')
+       WOMEN <i/b style="color:#01f7f8;"> less than 26 </i>') + 
+  
+  geom_segment(data=by_gf, mapping=aes(x=min_year, xend=max_year, y=-4, yend=-4), color='#24C4C4') +
+  geom_segment(data=by_gf, mapping=aes(x=min_year, xend=min_year, y=-4, yend=-3), color='#24C4C4') +
+  geom_segment(data=by_gf, mapping=aes(x=max_year, xend=max_year, y=-4, yend=-3), color='#24C4C4') +
+  #segments to connect images to groupings
+  geom_segment(data=connectors, mapping=aes(x=x,xend=xend,y=y,yend=yend),
+               linejoin= "round",
+               lineend = "round",
+               color="#24C4C4") + 
+  
+  #segments to connect images to groupings
+  geom_segment(data=images %>% filter(name!="Leonardo DiCaprio"),
+               mapping=aes(x=pos, xend=pos, y=-13, yend=-10), color='#24C4C4')+
+  geom_segment(data=connectors, mapping=aes(x=x,xend=xend,y=y,yend=yend), color='#24C4C4')+
+  
+  #plot images
+  geom_image(data=images, mapping=aes(y=-14, x=pos, image=path), size=0.07) +
+  
+  geom_richtext(data=images, 
+                mapping=aes(y=-19.5, x=pos, color=pal_label, label=str_replace(name," ","<br>")),
+                fill = NA, label.color = NA, hjust=0.4,
+                show.legend = FALSE, fontface="bold") +
+  scale_color_identity()
 
 ggsave("images/Leo_replicate_viz.pdf",
        width = 14,
