@@ -176,7 +176,7 @@ viz_leo <- ggplot(df, aes(x = Years)) +
        
        subtitle = 'HE GETS <i/b style="color:#ff7400;">OLDER</i>, THEY STAY THE <i style="color:#01f7f8;">SAME AGE</i>
        LEO IS <i/b style="color:#ff7400;">45<sup>+</sup></i> NOW BUT STILL CONSISTENTLY DATES
-       WOMEN <i/b style="color:#01f7f8;"> less than 26 </i>')
+       WOMEN <i/b style="color:#01f7f8;"> \u2264 25 </i>')
 
 ggsave("images/Leo_replicate_viz.pdf",
        width = 14,
