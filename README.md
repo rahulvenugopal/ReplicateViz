@@ -28,3 +28,6 @@
 - [How to insert special symbols to text](https://www.rdocumentation.org/packages/ggtext/versions/0.1.1/topics/element_textbox)
 - [To combine geom_line and geom_point when x variable is categorical](https://stackoverflow.com/questions/35209157/ggplot-line-plot-for-discrete-x-axis)
 - [Vertical gradient](https://stackoverflow.com/questions/70602516/gradient-colour-fill-a-barplot-in-ggplot2)
+
+### Some more polish needed
+![](https://raw.githubusercontent.com/rahulvenugopal/ReplicateViz/main/Of%20Dicaprio%20and%20data/images/Leo_replicate_viz.png)
