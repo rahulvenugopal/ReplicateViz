@@ -39,3 +39,4 @@
 # 4. Improve the graph
 - SWD data viz makeovers attempted by Albert Rapp using ggplot2 in R
 - Watch the [video](https://www.youtube.com/watch?v=st7_vPjq0SU) for the narrative
+![](https://github.com/rahulvenugopal/ReplicateViz/blob/main/Improve%20the%20graph/recreated.png)
