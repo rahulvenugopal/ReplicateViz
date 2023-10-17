@@ -39,7 +39,7 @@ plot <- ggplot(data,
   coord_flip() +
   
   labs(title = 'Wind Turbines are not Killing Fields for Birds ',
-       subtitle = 'Annual estimated bird mortality from selected antropogenic causes in the US (Median)',
+       subtitle = 'Numbers denote the annual estimated bird mortality from selected antropogenic causes in the US (Median)',
        caption = 'Source: US Fish and Wildlife service as of 2017') + 
   
   theme(axis.title.x = element_blank(),

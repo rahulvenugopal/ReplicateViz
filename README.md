@@ -31,3 +31,11 @@
 
 ### Some more polish needed
 ![](https://raw.githubusercontent.com/rahulvenugopal/ReplicateViz/main/Of%20Dicaprio%20and%20data/images/Leo_replicate_viz.png)
+---
+
+# 3. Wind turbines, cats and birds
+![](https://github.com/rahulvenugopal/ReplicateViz/blob/main/Wind%20turbines%20cats%20and%20birds/Birds_Cats_Turbines.png)
+
+# 4. Improve the graph
+- SWD data viz makeovers attempted by Albert Rapp using ggplot2 in R
+- Watch the [video](https://www.youtube.com/watch?v=st7_vPjq0SU) for the narrative
